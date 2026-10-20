@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
+}
+
+/* Palette Bazla : sable / encre, rouge piment, vert Bénin, jaune soleil */
+:root {
+  --background: #fbf5ea;
+  --foreground: #1a1f3a;
+  --card: #fffaf1;
+  --primary: #c8102e;
+  --primary-foreground: #ffffff;
+  --secondary: #008751;
+  --muted: #e9ecf7;
+  --muted-foreground: #4f5573;
+  --accent: #fcd116;
+  --border: #e6dcc8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0d1430;
+    --foreground: #f4eee2;
+    --card: #141c3d;
+    --primary: #d92b3e;
+    --secondary: #2fb37a;
+    --muted: #18214a;
+    --muted-foreground: #b4b8cc;
+    --border: #253063;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
+  html { @apply font-sans scroll-smooth; }
+  h1, h2, h3 { @apply font-heading text-balance; }
+}
+
+/* Motif « ferronnerie » de Bazla : treillis diagonal très léger */
+@utility motif {
+  background-image:
+    repeating-linear-gradient(45deg, color-mix(in oklab, currentColor 7%, transparent) 0 1px, transparent 1px 18px),
+    repeating-linear-gradient(-45deg, color-mix(in oklab, currentColor 7%, transparent) 0 1px, transparent 1px 18px);
+}
