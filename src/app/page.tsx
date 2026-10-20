@@ -1,12 +1,13 @@
+import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 
 const WHATSAPP = "2290142550623"; // TODO: numéro dédié au nettoyage ; indicatif + numéro, sans + ni espaces
 const chatLink = (text: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
 
 const SERVICES = [
-  { title: "Extérieur", desc: "Lavage carrosserie, jantes et vitres, séchage à la main." },
-  { title: "Intérieur", desc: "Aspiration, sièges, tableau de bord et tapis." },
-  { title: "Complet", desc: "Intérieur et extérieur, votre voiture comme neuve." },
+  { title: "Extérieur", desc: "Lavage carrosserie, jantes et vitres, séchage à la main.", image: "/images/exterieur.webp" },
+  { title: "Intérieur", desc: "Aspiration, sièges, tableau de bord et tapis.", image: "/images/interieur.webp" },
+  { title: "Complet", desc: "Intérieur et extérieur, votre voiture comme neuve.", image: "/images/complet.webp" },
 ];
 
 /** Bande signature de Bazla : vert, jaune, rouge (Bénin) + bleu (Haïti). */
@@ -53,9 +54,14 @@ export default function Home() {
           </div>
           <ul className="mt-14 grid gap-4 sm:grid-cols-3">
             {SERVICES.map((s) => (
-              <li key={s.title} className="rounded-xl border bg-card p-5">
-                <h2 className="text-xl font-semibold">{s.title}</h2>
-                <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
+              <li key={s.title} className="overflow-hidden rounded-xl border bg-card">
+                <div className="relative aspect-[4/3]">
+                  <Image src={s.image} alt="" fill sizes="(min-width: 640px) 250px, 100vw" className="object-cover" />
+                </div>
+                <div className="p-5">
+                  <h2 className="text-xl font-semibold">{s.title}</h2>
+                  <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
+                </div>
               </li>
             ))}
           </ul>
